@@ -2,6 +2,9 @@ package sample;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
+
+import java.time.LocalDateTime;
 
 public class MouseController implements EventHandler{
 
@@ -13,6 +16,8 @@ public class MouseController implements EventHandler{
 
     @Override
     public void handle(Event event) {
-
+        if(event.getEventType().equals(MouseEvent.MOUSE_PRESSED)){
+            model.log("mouse pressd at :"+ LocalDateTime.now());
+        }
     }
 }

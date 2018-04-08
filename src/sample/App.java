@@ -2,6 +2,7 @@ package sample;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -11,6 +12,7 @@ public class App extends Application {
 
         Model model = new Model();
         View view = new View();
+        MouseController controller = new MouseController(model);
 
         new AnimationTimer() {
 
@@ -20,6 +22,8 @@ public class App extends Application {
                 view.update();
             }
         }.start();
+
+        view.getScene().addEventHandler(MouseEvent.MOUSE_PRESSED,controller);
     }
 
 
