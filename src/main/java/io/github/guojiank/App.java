@@ -1,8 +1,8 @@
-package sample;
+package io.github.guojiank;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -11,19 +11,21 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Model model = new Model();
-        View view = new View();
-        MouseController controller = new MouseController(model);
+        View view = new View(model);
+        Controller controller = new Controller(model);
 
+        // 默认刷新是60fps
         new AnimationTimer() {
 
+            // now显示的是当前系统时间
             @Override
             public void handle(long now) {
                 model.update();
-                view.update();
+                view.render();
             }
         }.start();
 
-        view.getScene().addEventHandler(MouseEvent.MOUSE_PRESSED,controller);
+        view.getScene().addEventHandler(KeyEvent.KEY_PRESSED,controller);
     }
 
 
